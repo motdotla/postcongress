@@ -1,0 +1,9 @@
+!!!
+%html{:lang => "en", "ng-app" => ""}
+  %head
+    = haml :"layouts/_head"
+  %body
+    .container
+      .yield_content
+        = yield
+    = haml :"layouts/_footer"

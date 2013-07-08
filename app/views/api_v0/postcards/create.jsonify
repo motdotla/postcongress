@@ -1,0 +1,12 @@
+json.success true
+json.postcard do 
+  json.id                     @postcard.id
+  json.stripe_charge_id       @postcard.stripe_charge_id
+  json.message                @postcard.message
+  json.name                   @postcard.name
+  json.street1                @postcard.street1
+  json.street2                @postcard.street2
+  json.city                   @postcard.city
+  json.state                  @postcard.state
+  json.postalcode             @postcard.postalcode
+end

@@ -1,0 +1,12 @@
+json.success true
+json.senators(@senators) do |senator|
+  json.id                     senator.id
+  json.name                   senator.name
+  json.street1                senator.street1
+  json.street2                senator.street2
+  json.city                   senator.city
+  json.state                  senator.state
+  json.postalcode             senator.postalcode
+  json.home_state             senator.home_state
+  json.name_and_party         senator.name_and_party
+end

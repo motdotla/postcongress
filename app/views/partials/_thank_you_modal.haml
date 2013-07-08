@@ -1,0 +1,24 @@
+#thank-you-modal.modal.hide
+  .modal-header
+    %h3 Payment Successful
+    %h4 Your Postcard is being delivered.
+  %form#sender-form{:action => "", :method => "POST"}
+    .modal-body
+      %p
+        Give 
+        %a{href: "https://postcongress.io"}
+          Postcongress.io 
+        some love. Spread the word.
+      %ul.shares
+        %li
+          = haml :"layouts/_pinterest"
+        %li
+          = haml :"layouts/_twitter"
+        %li
+          = haml :"layouts/_facebook_like"
+
+      %hr
+      %ul
+        %li "A decent and manly examination of the acts of government should not only be tolerated, but encouraged." ~ William Henry Harrison
+        %li "Do what you can, with what you have, where you are." ~ Theodore Roosevelt
+        

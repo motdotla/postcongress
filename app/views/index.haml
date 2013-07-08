@@ -1,0 +1,139 @@
+#index{"ng-controller" => "IndexCtrl"}
+  .row
+    .span5
+      .header
+        %h1 Postcongress.io
+        %h2 Send a Postcard to Your Congressman
+    .span7.mass-hide.hidden
+      .price-stuff
+        .row
+          .span4
+            %p
+              Send a 
+              %strong real 
+              postcard for $1.99.
+              %br
+              We create and mail the postcard for you.
+  .row.mass-hide.hidden
+    .span4
+      .steps
+        .step1.step
+          %h3
+            %span.badge.badge-important 1
+            Find your Representative
+          .enter-zip
+            %p.help-text.popover-hover Enter your zip code
+            %input.span1{type: "text", placeholder: "90210", "ng-model" => "postcard.sender_postalcode", maxlength: "5", "ng-change" => "searchByZip()"}
+          .reps-list
+            %p.zip-no-results 0 Results. You probably mistyped the zip code. 
+            %p.help-text
+              %span.visible-desktop Click a person
+              %span.hidden-desktop Tap a person twice
+            %ul#representatives
+              %li{"ng-repeat" => "legislator in legislators"}
+                %a{href: "", "ng-click" => "setLegislator($index)", class: "party-{{legislator.party}}", "ng-class" => "legislator.class", "rel" => "popover", "title" => "{{legislator.name}} ({{legislator.party}})"}
+                  %img.photo{src: "//postcongressproduction.s3.amazonaws.com/images/legislators/40x50/{{legislator.id}}.jpg"}
+                  %span {{legislator.party}}
+                  %img.accept-icon{src: "/images/accept.png"}
+          .clearer
+
+        .step2.step
+          %h3
+            %span.badge.badge-important 2
+            Craft a message
+          %textarea#message{name: "message", :maxlength => "370", "ng-model" => "postcard.message", title: "Step 2: Write a message to your Senator", placeholder: "Start typing here.", "required" => nil}
+
+        .step2_5.step
+          %h3
+            Include your address 
+            %small (recommended)
+          .sender
+            %input#sender_name{type: "text", placeholder: "Your Name", "ng-model" => "postcard.sender_name", maxlength: "50"}
+            %input#sender_street1{type: "text", placeholder: "Street", "ng-model" => "postcard.sender_street1", maxlength: "150", "ng-change" => "showSenderAddress()"}
+            %input#sender_street2{type: "text", placeholder: "Street 2 (optional)", "ng-model" => "postcard.sender_street2", maxlength: "150", "ng-change" => "showSenderStreet2()"}
+            %input#sender_city{type: "text", placeholder: "City", "ng-model" => "postcard.sender_city", maxlength: "50"}
+            %input#sender_state{type: "text", placeholder: "State", "ng-model" => "postcard.sender_state", maxlength: "2"}
+            %input#sender_postalcode{type: "text", placeholder: "Zip", "ng-model" => "postcard.sender_postalcode", maxlength: "5"}
+
+        .step3.step
+          %span.badge.badge-important 3
+          %a.btn.btn-danger.btn-large.deliver-btn{"ng-click" => "showPaymentForm()", "ng-model" => "postcard", title: "Step 3: Deliver to your Senator"} 
+            %i.icon-lock.icon-white
+            Continue
+            %a.learn-more{href: "#learn-more"} Learn more
+          .errors
+
+
+    .span1 &nbsp;
+    .span7
+      .postcard
+        %img.price-badge{src: "/images/199.png"}
+        %img.postcard-back{:src => "/images/postcard-back.jpg"}
+        .greeting
+          {{postcard.greeting}}
+        .message
+          {{postcard.message}}
+        .address
+          %p
+            {{postcard.name}}
+            %br
+            {{postcard.street1}}
+            %br
+            {{postcard.city}}, {{postcard.state}} {{postcard.postalcode}}
+        .sender_address.hidden
+          %p
+            {{postcard.sender_name}}
+            %br
+            {{postcard.sender_street1}} 
+            %span.sender_street2.hidden
+              %br
+              {{postcard.sender_street2}}
+            %br
+            {{postcard.sender_city}}, {{postcard.sender_state}} {{postcard.sender_postalcode}}
+          
+  .row#learn-more.mass-hide.hidden
+    .span4
+      .learn-more-section
+        %h2 Price
+        %h3
+          %strong $1.99
+          per postcard
+        %p.cost-explanation 
+          %small 
+            %strong Postcards cost time and money to ship. 
+            To save you the hassle of buying a postcard, looking up the address of your congressperson, filling it out, and going to a mailbox to drop it off, we handle all that for you.
+    .span4
+      .learn-more-section
+        %h2 Learn More
+        %h4 Are these <strong>real</strong> postcards?
+        %p 
+          <em>Yes</em>, every postcard delivered is a tangible 'real world' postcard. Pretty cool, huh.
+
+        %h4 Why send a real postcard?
+        %p Unlike electronic mail, which is both free to send and easy to ignore, receiving a postcard sends its own message. It says to the congressperson, "I feel strongly enough about this to go to the expense of sending an actual card."
+
+        %h4 Can I use this for my advocacy group?
+        %p
+          Yes, you can. We can also setup a more customized hosted solution for you. 
+          %a{href: "mailto:scott@scottmotte.com"} Get in touch
+          and let's chat.
+
+
+    .span4
+      .learn-more-section
+        %h2 Spread the word
+        %ul.shares
+          %li
+            = haml :"layouts/_pinterest"
+          %li
+            = haml :"layouts/_twitter"
+          %li
+            = haml :"layouts/_facebook_like"
+
+        %h4 Get in Touch
+        %p
+          %a{href: "mailto:scott@scottmotte.com"} Email us
+          with any support requests or questions you have. We will be happy to help.
+                         
+  = haml :"partials/_credit_card_modal"
+  = haml :"partials/_thank_you_modal"

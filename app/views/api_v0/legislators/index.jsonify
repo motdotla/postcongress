@@ -1,0 +1,16 @@
+json.success true
+json.legislators(@legislators) do |legislator|
+  json.id                     legislator.bioguide_id
+  json.name                   "#{legislator.firstname} #{legislator.lastname}"
+  json.street1                legislator.congress_office
+  json.street2                nil
+  json.city                   "Washington"
+  json.state                  "DC"
+  json.postalcode             20510
+  json.home_state             legislator.state
+  json.party                  legislator.party
+  json.name_and_party         "#{legislator.firstname} #{legislator.lastname} (#{legislator.party})"
+  json.greeting               "#{legislator.title == 'Sen' ? 'Senator' : 'Representative'} #{legislator.lastname}, "
+  json.title                  legislator.title
+  json.full_title             "#{legislator.title == 'Sen' ? 'Senator' : 'Representative'}"
+end

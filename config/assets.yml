@@ -1,0 +1,7 @@
+javascripts:
+  application:
+    - public/javascripts/compiled/*.js
+
+stylesheets:
+  application:
+    - public/stylesheets/compiled/*.css

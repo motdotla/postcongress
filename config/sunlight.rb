@@ -1,0 +1,1 @@
+Sunlight::Base.api_key = SUNLIGHT_LABS_API_KEY
